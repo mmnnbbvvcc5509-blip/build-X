@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build X - AI Chat Application</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        .hero {
+            background-color: #000;
+            color: #fff;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #fff;
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .features {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .pricing {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        
+        .pricing h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .pricing p {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            opacity: 0.8;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card.featured {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .price-period {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .pricing-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #000;
+        }
+        
+        .pricing-card.featured .pricing-features li::before {
+            color: #fff;
+        }
+        
+        .pricing-button {
+            display: inline-block;
+            background-color: #000;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card.featured .pricing-button {
+            background-color: #fff;
+            color: #000;
+        }
+        
+        .pricing-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .feature-grid, .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Arabic support */
+        .rtl {
+            direction: rtl;
+            text-align: right;
+        }
+        
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #f5f5f5;
+            }
+            
+            .features {
+                background-color: #1e1e1e;
+            }
+            
+            .feature-card {
+                background-color: #2d2d2d;
+                color: #f5f5f5;
+            }
+            
+            .pricing {
+                background-color: #121212;
+            }
+            
+            .pricing-card {
+                background-color: #1e1e1e;
+                color: #f5f5f5;
+            }
+            
+            .pricing-card.featured {
+                background-color: #f5f5f5;
+                color: #121212;
+            }
+            
+            .pricing-features li::before {
+                color: #f5f5f5;
+            }
+            
+            .pricing-card.featured .pricing-features li::before {
+                color: #121212;
+            }
+            
+            .pricing-button {
+                background-color: #f5f5f5;
+                color: #121212;
+            }
+            
+            .pricing-card.featured .pricing-button {
+                background-color: #121212;
+                color: #f5f5f5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Build X</div>
+            <div class="tagline">AI-Powered Chat Application</div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Chat with Build X AI Assistant</h1>
+            <p>Powered by Open All Hands technology to help you build applications, design websites, and more.</p>
+            <a href="#download" class="cta-button">Download Now</a>
+        </div>
+    </section>
+    
+    <section class="ai-integration" style="background-color: #000; color: #fff; padding: 60px 0; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Powered by Open All Hands</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Build X integrates the powerful Open All Hands AI agent, rebranded as Build X. This gives you access to a sophisticated AI assistant that can help you build applications, design websites, and solve complex problems.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px;">
+                <div style="background-color: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; max-width: 300px;">
+                    <h3 style="margin-bottom: 15px;">$20 Free Credit</h3>
+                    <p>Start with $20 worth of free credits to chat with the AI assistant.</p>
+                </div>
+                <div style="background-color: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; max-width: 300px;">
+                    <h3 style="margin-bottom: 15px;">Advanced Capabilities</h3>
+                    <p>Get help with coding, design, problem-solving, and more.</p>
+                </div>
+                <div style="background-color: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; max-width: 300px;">
+                    <h3 style="margin-bottom: 15px;">File Sharing</h3>
+                    <p>Share images and files with the AI to get more contextual help.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">AI Chat</h3>
+                    <p>Chat with our powerful AI assistant to get help with coding, design, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Secure Login</h3>
+                    <p>Sign in with Google or as a guest to access the chat features.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Cross-Platform</h3>
+                    <p>Use on mobile, tablet, or desktop with a responsive design.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3 class="feature-title">File Upload</h3>
+                    <p>Share images, videos, and files with the AI assistant.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌙</div>
+                    <h3 class="feature-title">Dark Mode</h3>
+                    <p>Switch between light and dark themes for comfortable viewing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Chat History</h3>
+                    <p>Access your previous conversations with the AI assistant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pricing">
+        <div class="container">
+            <h2>Pricing Plans</h2>
+            <p>Start with $20 free credit and upgrade for more features</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0<span class="price-period">/month</span></div>
+                    <p>Start with $20 credit</p>
+                    <ul class="pricing-features">
+                        <li>$20 free credit</li>
+                        <li>Basic chat features</li>
+                        <li>File uploads</li>
+                        <li>Guest access</li>
+                    </ul>
+                    <a href="#download" class="pricing-button">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Pro</h3>
+                    <div class="price">$14.99<span class="price-period">/month</span></div>
+                    <p>For regular users</p>
+                    <ul class="pricing-features">
+                        <li>Unlimited chat</li>
+                        <li>Priority response</li>
+                        <li>Advanced file handling</li>
+                        <li>Chat history</li>
+                        <li>Cloud sync</li>
+                    </ul>
+                    <a href="#download" class="pricing-button">Subscribe</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Ultimate</h3>
+                    <div class="price">$29.99<span class="price-period">/month</span></div>
+                    <p>For power users</p>
+                    <ul class="pricing-features">
+                        <li>Everything in Pro</li>
+                        <li>Highest priority</li>
+                        <li>Advanced AI features</li>
+                        <li>API access</li>
+                        <li>Team collaboration</li>
+                    </ul>
+                    <a href="#download" class="pricing-button">Subscribe</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="download" class="download">
+        <div class="container" style="text-align: center; padding: 80px 0;">
+            <h2>Download Build X</h2>
+            <p style="margin-bottom: 30px;">Get the app on your device</p>
+            <a href="/downloads/build-x.apk" class="cta-button">Download APK</a>
+            <p style="margin-top: 20px;">Or</p>
+            <a href="https://github.com/mmnnbbvvcc5509-blip/build-X" class="cta-button" style="background-color: #333; color: #fff; margin-top: 10px;">Try Online</a>
+        </div>
+    </section>
+    
+    <section class="language-support" style="background-color: #f5f5f5; padding: 60px 0; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Multi-language Support</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Build X supports multiple languages, including Arabic, making it accessible to users worldwide.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px;">
+                <div style="background-color: #fff; padding: 30px; border-radius: 10px; max-width: 400px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <h3 style="margin-bottom: 15px;">English</h3>
+                    <p>Hello! I'm Build X, how can I help you today?</p>
+                </div>
+                <div style="background-color: #fff; padding: 30px; border-radius: 10px; max-width: 400px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" class="rtl">
+                    <h3 style="margin-bottom: 15px;">العربية</h3>
+                    <p>مرحبا! أنا وكيل Build X، كيف يمكنني مساعدتك اليوم؟</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">About</a>
+            </div>
+            <div class="copyright">© 2025 Build X. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html>
